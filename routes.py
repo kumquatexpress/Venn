@@ -1,5 +1,6 @@
 from flask import Blueprint
 from handlers import main_handler
+from models import User
 
 app = Blueprint('app', __name__, template_folder='templates')
 

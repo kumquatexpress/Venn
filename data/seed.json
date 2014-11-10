@@ -1,0 +1,26 @@
+[
+	{
+		"user_id": 1,
+		"dob": "1990-01-01",
+		"gender": "F",
+		"first_name": "Number",
+		"last_name": "One",
+		"answers": [8,3,0,0,7,10,0,0,5,2,10,0,0]
+	},
+	{
+		"user_id": 2,
+		"dob": "1995-04-16",
+		"gender": "M",
+		"first_name": "Mr.",
+		"last_name": "Two",
+		"answers": [0,1,5,0,9,0,0,1,5,5,10,10,0]
+	},
+	{
+		"user_id": 3,
+		"dob": "1986-09-02",
+		"gender": "M",
+		"first_name": "Fakeperson",
+		"last_name": "Three",
+		"answers": [0,0,0,0,0,0,0,0,0,0,0,0,0]
+	}
+]
