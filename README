@@ -1,3 +1,56 @@
 Venn
 
-something something very hush hush
+Flask app running on mongodb: http://flask.pocoo.org/docs/0.10/
+
+This app is organized into the following folders:
+/venn <-- toplevel folder, root directory
+	/data <-- holds example data in the form of json, might hold real data later
+	/handlers <-- holds the handlers that provide functions to handle each incoming route
+	/templates <-- holds html templates that are used to generate the views
+
+Packages required: (pip install these)
+flask
+flask-pymongo
+code, for debugging
+
+Important files:
+server.py <-- runs the flask server, initializes connection to the database
+
+routes.py <-- holds each route, set up as 
+@app.route([route name])
+def [function_name]([parameters]):
+    return [handler_name].[handler_function]()
+
+models.py <-- holds logic having to do with each type of model and manages database i/o
+
+EXAMPLE - CREATING A NEW FAKE USER
+Suppose we want to make a new user with the name of whatever matches the url after venn.com/[username]
+
+We need to make a new route matching /[username], so we can do that in routes.py
+@app.route("/<name>")
+def response(name):
+	User.insert({"name": name})
+	return "hello, %s" % name
+
+<variable> in the route title binds that variable to be used inside of the function as a parameter, in this case
+response(name).  name has the value of whatever is in the route, so venn.com/test will now make a new user with name
+"test" and then display a page that reads "hello, test".
+
+To extricate the logic of handling these url requests, we can put the function logic from response into a handler.
+In main_handler.py,
+def make_new_user(name):
+	User.insert({"name": name})
+	return "hello, %s" % name
+
+And now in routes we can change response to be
+@app.route("/<name>")
+def response(name):
+	return main_handler.make_new_user(name)
+
+This is the same exact thing, but we separated the logic of handling a request from the logic of setting up the url route itself.
+END OF EXAMPLE - CREATING A NEW FAKE USER
+
+
+
+
+
