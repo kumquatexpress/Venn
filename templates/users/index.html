@@ -1,0 +1,15 @@
+<!doctype html>
+<title>Listing Users</title>
+<h1>Users List</h1>
+<table>
+    <th>
+        <td>Id</td>
+        <td>Name</td>
+    </th>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+    </tr>
+    {% endfor %}
+</table>

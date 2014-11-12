@@ -1,9 +1,9 @@
-class Question(object):
+class Model(object):
 	dbMap = None
 
 	@staticmethod
 	def initialize_db(conn):
-		Question.dbMap = conn.questions
+		pass
 
 	@staticmethod
 	def find_one(query={}):
@@ -19,23 +19,18 @@ class Question(object):
 		# needs validation probably
 		return Question.dbMap.insert(obj)
 
-class User(object):
-	dbMap = None
+class Question(Model):
+
+	@staticmethod
+	def initialize_db(conn):
+		Question.dbMap = conn.questions
+
+class User(Model):
 
 	@staticmethod
 	def initialize_db(conn):
 		User.dbMap = conn.users
 
-	@staticmethod
-	def find_one(query={}):
-		return User.dbMap.find_one(query)
+class Relationship(Model):
+	pass
 
-	@staticmethod
-	def find(query={}):
-		# processing here
-		return User.dbMap.find(query)
-
-	@staticmethod
-	def insert(obj):
-		# needs validation probably
-		return User.dbMap.insert(obj)

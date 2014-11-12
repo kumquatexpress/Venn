@@ -6,14 +6,13 @@ from models import User, Question
 
 main_app = Flask(__name__)
 main_app.register_blueprint(app)
+main_app.config['MONGO_DBNAME'] = "venn_development"
 
 mongo = PyMongo(main_app)
 
-with main_app.app_context():	
+with main_app.app_context():
 	User.initialize_db(mongo.db)
 	Question.initialize_db(mongo.db)
-
-User.insert({"name": "hellotest"})
 
 if __name__ == "__main__":
     main_app.run()
