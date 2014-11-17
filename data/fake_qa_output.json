@@ -1,0 +1,14 @@
+{
+    "questions": [
+        {
+            "question_id": 1,
+            "crowd_num": 3,
+            "answer": 4.667
+        },
+        {
+            "question_id": 2,
+            "crowd_num": 3,
+            "answer": 8            
+        }
+    ]
+}
