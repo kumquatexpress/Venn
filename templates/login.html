@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
+<script>
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 <section id="login">
     <div class="container">
+        {% if form.username.errors or form.password.errors %}
+            <div class="row bg-warning text-center" id="alert">Looks like there were problems in your login information.
+                We can't sign in you in at the moment, please try again later.</div>
+        {% endif %}
         <div class="row">
             <div class="col-xs-12">
-                {% if form.username.errors or form.password.errors %}
-                Looks like there were problems in your login information.
-                {% endif %}
                 <div class="form-wrap">
                 <h1>
                     {% if type %}
@@ -28,9 +38,18 @@
                             <span class="character-checkbox" onclick="showPassword()"></span>
                             <span class="label">Show password</span>
                         </div>
+                    {% if type %}
+                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
+                    </form>
+                    <a class="btn btn-block btn-social btn-facebook" id="fb-login">
+                        <i class="fa fa-facebook"></i>
+                        Log in with Facebook
+                    </a>
+                    {% else %}
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
                     </form>
                     <a href="/register" class="btn btn-info btn-block" data-toggle="modal">Register for a new account</a>
+                    {% endif %}
                     <hr>
                 </div>
             </div> <!-- /.col-xs-12 -->
