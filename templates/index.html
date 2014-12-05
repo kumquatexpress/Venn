@@ -5,7 +5,7 @@
         <div class="text-vertical-center">
             <h1>Venn</h1>
             <br/>
-            {% if current_user %}
+            {% if current_user.is_authenticated() %}
                 <h3>Welcome, {{ current_user.data.username }}.</h3>
                 <a href="/quiz" class="btn btn-primary btn-lg">Start Playing</a>
             {% else %}

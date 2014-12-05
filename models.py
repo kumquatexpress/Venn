@@ -65,7 +65,10 @@ class UserModel(UserMixin):
 
 	def init(self, *args, **kwargs):
 		UserMixin.__init__(self, *args, **kwargs)
+		self.data = None
 
+	def is_authenticated(self):
+		return self.data is not None
 
 class Relationship(Model):
 	pass
