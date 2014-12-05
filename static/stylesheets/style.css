@@ -246,3 +246,7 @@ hr.small {
 footer {
     padding: 100px 0;
 }
+
+#fb-button {
+    width: 5em;
+}
