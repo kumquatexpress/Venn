@@ -11,11 +11,12 @@
 </script>
 <section id="login">
     <div class="container">
+        {% if form.username.errors or form.password.errors %}
+            <div class="row bg-warning text-center" id="alert">Looks like there were problems in your login information.
+                We can't sign in you in at the moment, please try again later.</div>
+        {% endif %}
         <div class="row">
             <div class="col-xs-12">
-                {% if form.username.errors or form.password.errors %}
-                Looks like there were problems in your login information.
-                {% endif %}
                 <div class="form-wrap">
                 <h1>
                     {% if type %}
@@ -40,7 +41,10 @@
                     {% if type %}
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
                     </form>
-                    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+                    <a class="btn btn-block btn-social btn-facebook" id="fb-login">
+                        <i class="fa fa-facebook"></i>
+                        Log in with Facebook
+                    </a>
                     {% else %}
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
                     </form>
