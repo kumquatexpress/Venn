@@ -30,5 +30,4 @@ with main_app.app_context():
 	User.initialize_db(mongo.db)
 	Question.initialize_db(mongo.db)
 
-if __name__ == "__main__":
-    main_app.run(debug=True)
+main_app.run(debug=True)
