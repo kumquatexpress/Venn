@@ -3,3 +3,4 @@ flask-pymongo
 code
 flask-login
 flask-wtf
+gunicorn
