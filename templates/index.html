@@ -1,5 +1,14 @@
 {% extends "base.html" -%}
 {% block content -%}
+<script>
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
@@ -107,6 +116,7 @@
                 <div class="col-lg-10 col-lg-offset-1 text-center">
                     <h4><strong>Venn: Crowdsourcing Final Project</strong></h4>
                     <p class="text-muted">Tiff Lu, Morgan Snyder, Boyang Niu Fall 2014©</p>
+                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="padding-left:16.5em;"></div>
                 </div>
             </div>
         </div>
