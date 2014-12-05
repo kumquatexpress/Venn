@@ -4,8 +4,14 @@
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1>Venn</h1>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+            <br/>
+            {% if current_user %}
+                <h3>Welcome, {{ current_user.data.username }}.</h3>
+                <a href="/quiz" class="btn btn-primary btn-lg">Start Playing</a>
+            {% else %}
+                <a href="#about" class="btn btn-default btn-lg">Find Out More</a>
+                <a href="/login" class="btn btn-primary btn-lg">Sign Up Now</a>
+            {% endif %}
         </div>
     </header>
 
@@ -25,7 +31,7 @@
 
     <!-- Services -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
+    <section id="services" class="services bg-danger">
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
@@ -36,7 +42,7 @@
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-magic fa-stack-1x text-primary"></i>
+                                <i class="fa fa-magic fa-stack-1x text-danger"></i>
                             </span>
                                 <h4>
                                     <strong>Goal #1</strong>
@@ -49,7 +55,7 @@
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                                <i class="fa fa-compass fa-stack-1x text-danger"></i>
                             </span>
                                 <h4>
                                     <strong>Goal #2</strong>
@@ -62,7 +68,7 @@
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-heart fa-stack-1x text-primary"></i>
+                                <i class="fa fa-heart fa-stack-1x text-danger"></i>
                             </span>
                                 <h4>
                                     <strong>Goal #3</strong>
@@ -75,7 +81,7 @@
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-danger"></i>
                             </span>
                                 <h4>
                                     <strong>Goal #4</strong>

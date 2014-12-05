@@ -1,3 +1,5 @@
 flask
 flask-pymongo
 code
+flask-login
+flask-wtf

@@ -27,6 +27,15 @@ body {
     padding: 0;
     font-size: 4.5em;
     font-weight: 700;
+    color: rgb(210,210,210);
+}
+
+.text-vertical-center h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: rgb(255,255,255);
 }
 
 /* Custom Button Styles */
@@ -47,7 +56,7 @@ body {
 .btn-light {
     border-radius: 0;
     color: #333;
-    background-color: rgb(255,255,255);
+    background-color: rgb(210,210,210);
 }
 
 .btn-light:hover,
@@ -155,7 +164,7 @@ hr.small {
     position: relative;
     width: 100%;
     height: 100%;
-    background: url(../img/bg.jpg) no-repeat center center scroll;
+    background: url("https://classicinfusion.files.wordpress.com/2012/10/intell-bar.jpg") no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
