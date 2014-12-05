@@ -4,3 +4,4 @@ code
 flask-login
 flask-wtf
 gunicorn
+pyyaml

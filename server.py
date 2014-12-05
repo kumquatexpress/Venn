@@ -4,11 +4,15 @@ from flask.ext.pymongo import PyMongo, ObjectId
 import code
 from flask_login import *
 from models import User, Question
+import yaml
+
+db = yaml.load(open("config/db.yaml"))
 
 main_app = Flask(__name__)
 main_app.register_blueprint(app)
-main_app.secret_key = 'who really cares?'
+main_app.secret_key = db['secret']
 main_app.config['MONGO_DBNAME'] = "venn_development"
+main_app.config['MONGO_URI'] = db["uri"]
 
 mongo = PyMongo(main_app)
 
