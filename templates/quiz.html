@@ -1,13 +1,36 @@
 {% extends "base.html" -%}
 {% block content -%}
 <div class="container">
+    {% if alert %}
+    <div class="row bg-danger">
+        <p>{{alert}}</p>
+    </div>
+    {% endif %}
     <div class="row">
         <div class="well col-sm-6" id="question">
-            RANDOM QUESTION HERE
+            <h1>{{question.title}}</h1>
+            <p>{{question.text}}</p>
+            <div>
+                <img src={{question.image}} style="padding-left:7.5em;">
+            </div>
         </div>
         <div class="well col-sm-6" id="answer">
-            RANDOM ANSWER HERE
+            <form role="form" method="post" id="quiz-form" autocomplete="off">
+                <div class="form-group">
+                    <label for="ans">Your Answer</label>
+                    <input type="range" name="ans" min="1" max="10" value="5" id="ans" class="form-control" onchange="showValue(value)">
+                    <output for="ans" id="showAnswer" style="text-align:center;font-size:16px;font-weight:bold;">5</output>
+                    <input type="hidden" name="qid" id="qid" value={{question.question_id}}>
+                </div>
+                <input type="submit" id="submit" class="btn btn-primary btn-lg btn-block" value="Next Question!">
+            </form>
+            <button onclick="window.location.href='/';" class="btn btn-warning btn-block btn-lg">Exit Quiz</button>
         </div>
     </div>
 </div>
+<script>
+function showValue(v) {
+    $('#showAnswer').val(v);
+}
+</script>
 {%- endblock content %}

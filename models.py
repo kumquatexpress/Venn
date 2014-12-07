@@ -13,14 +13,18 @@ class Model(object):
 		return Question.dbMap.find_one(query)
 
 	@staticmethod
-	def find(query={}):
+	def find(query={}, limit=-1):
 		# processing here
-		return Question.dbMap.find(query)
+		return Question.dbMap.find(query).limit(limit)
 
 	@staticmethod
 	def insert(obj):
 		# needs validation probably
 		return Question.dbMap.insert(obj)
+
+	@staticmethod
+	def count():
+		return User.dbMap.count()
 
 class Question(Model):
 
@@ -35,10 +39,10 @@ class User(Model):
 		User.dbMap = conn.users
 
 	@staticmethod
-	def find(query={}):
+	def find(query={}, limit=-1):
 		# processing here
-		results = User.dbMap.find(query)
-		if len(results) < 1:
+		results = User.dbMap.find(query).limit(limit)
+		if results.count() < 1:
 			return None
 		return map(lambda x: to_user(x), results)
 
@@ -54,6 +58,16 @@ class User(Model):
 		# needs validation probably
 		User.dbMap.insert(obj)
 		return to_user(obj)
+
+	@staticmethod
+	def update(obj):
+		# needs validation probably
+		User.dbMap.save(obj)
+		return to_user(obj)
+
+	@staticmethod
+	def count():
+		return User.dbMap.count()
 
 def to_user(obj):
 	um = UserModel()
@@ -71,5 +85,35 @@ class UserModel(UserMixin):
 		return self.data is not None
 
 class Relationship(Model):
-	pass
+	
+	@staticmethod
+	def initialize_db(conn):
+		Relationsip.dbMap = conn.relationships
+
+	@staticmethod
+	def find(query={}, limit=-1):
+		# processing here
+		results = Relationship.dbMap.find(query).limit(limit)
+		if results.count() < 1:
+			return None
+		return results
+
+	@staticmethod
+	def find_one(query={}):
+		return Relationship.dbMap.find_one(query)
+
+	@staticmethod
+	def insert(obj):
+		# needs validation probably
+		return Relationship.dbMap.insert(obj)
+		
+
+	@staticmethod
+	def update(obj):
+		# needs validation probably
+		return Relationship.dbMap.save(obj)
+		
+	@staticmethod
+	def count():
+		return Relationship.dbMap.count()
 

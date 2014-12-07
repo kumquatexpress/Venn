@@ -32,7 +32,7 @@ def index_users():
 def logout():
     return users_handler.logout()
 
-@app.route("/quiz")
+@app.route("/quiz", methods=["GET", "POST"])
 @login_required
 def quiz():
     return users_handler.quiz()
