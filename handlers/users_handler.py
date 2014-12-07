@@ -69,7 +69,7 @@ def select_question(user):
     idx = range(1, questions.count())
     random.shuffle(idx)
     for q in idx:
-        if questions[q]["question_id"] not in answered:
+        if str(questions[q]["question_id"]) not in answered:
             return q
     return None
 
