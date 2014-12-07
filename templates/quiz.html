@@ -6,12 +6,12 @@
         <p>{{alert}}</p>
     </div>
     {% endif %}
-    <div class="row">
-        <div class="well col-sm-6" id="question">
-            <h1>{{question.title}}</h1>
+    <div class="row" style="text-align:center;">
+        <div class="col-sm-6 bg-success" id="question">
+            <h2>{{question.title}}</h2>
             <p>{{question.text}}</p>
-            <div>
-                <img src={{question.image}} style="padding-left:7.5em;">
+            <div class="thumbnail">
+                <img src={{question.image}}>
             </div>
         </div>
         <div class="well col-sm-6" id="answer">
