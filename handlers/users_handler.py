@@ -66,7 +66,7 @@ def logout():
 def select_question(user):
     answered = user.data.get("questions", [])
     questions = models.Question.find()
-    idx = range(questions.count())
+    idx = range(1, questions.count())
     random.shuffle(idx)
     for q in idx:
         if questions[q]["question_id"] not in answered:
