@@ -14,5 +14,5 @@ def login():
         # login and validate the user...
         login_user(form.user)
         flash("Logged in successfully.")
-        return redirect("/")
+        return redirect(request.args.get("next") or "/")
     return render_template("login.html", form=form)

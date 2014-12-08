@@ -19,7 +19,7 @@ mongo = PyMongo(main_app)
 login_manager = LoginManager()
 
 login_manager.setup_app(main_app)
-login_manager.login_view = "login"
+login_manager.login_view = "/login"
 
 
 @login_manager.user_loader
