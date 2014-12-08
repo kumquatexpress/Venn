@@ -12,7 +12,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Venn</h1>
+                <img src="/static/images/Venn_white.png" style="max-height:300px;padding-bottom:4em;">
             <br/>
             {% if current_user.is_authenticated() %}
                 <h3>Welcome, {{ current_user.data.username }}.</h3>
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Bringing people together.</h2>
-                    <p>Something about Venn goes here, figure out the text later. Put a bunch of random text here as filler for now.</p>
+                    <p>Venn connects people through the power of human computation. We provide the quirky personality questions. You provide the answers. Your friends compare quiz results to match you with other rad people. And you return the favor. </p>
                 </div>
             </div>
             <!-- /.row -->
@@ -48,52 +48,40 @@
                     <h2>Our Goal</h2>
                     <hr class="small">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-5x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-magic fa-stack-1x text-danger"></i>
                             </span>
                                 <h4>
-                                    <strong>Goal #1</strong>
+                                    <strong>Bridge Social Circles</strong>
                                 </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p>Bring separate social groups together. Make and introduce mutual friends.</p>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-5x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-compass fa-stack-1x text-danger"></i>
                             </span>
                                 <h4>
-                                    <strong>Goal #2</strong>
+                                    <strong>Create Meaningful Connections</strong>
                                 </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p>Find people with shared passions, interests, and viewpoints. Venn gives you suggestions on not only who to meet, but how to meet them.</p>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-5x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-heart fa-stack-1x text-danger"></i>
                             </span>
                                 <h4>
-                                    <strong>Goal #3</strong>
+                                    <strong>Personalize the Process</strong>
                                 </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-5x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-danger"></i>
-                            </span>
-                                <h4>
-                                    <strong>Goal #4</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p>Stay updated on your suggested matches to see if they’re successful. Bringing people together is a reward all on its own.</p>
                             </div>
                         </div>
                         <button href="/register" class="btn btn-block btn-lg btn-danger" onclick="window.location.href='/register';">Sign me up</button>
