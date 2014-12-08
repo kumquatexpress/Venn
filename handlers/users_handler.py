@@ -40,7 +40,8 @@ def facebook_create(info):
 def quiz():
     """get a question from db present it, get a form feedback
     send back as a response to db, win"""
-    qid = select_question(current_user)
+    user = current_user
+    qid = select_question(user)
     question = models.Question.find_one({"question_id": qid})
     if qid is None or random.randint(0, 10) < PROB:
         try:
@@ -52,10 +53,10 @@ def quiz():
 
     if form.validate_on_submit():
         # login and validate the user...
-        current_user.data["questions"] = current_user.data.get("questions", {})
-        current_user.data["questions"][str(form.question_id)] = form.answer
+        user.data["questions"] = user.data.get("questions", {})
+        user.data["questions"][str(form.question_id)] = form.answer
 
-        models.User.update(current_user.data)
+        user = models.User.update(user.data)
         return redirect("/quiz")
     return render_template("quiz.html", form=form, question=question)
 
