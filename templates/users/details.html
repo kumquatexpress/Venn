@@ -1,0 +1,31 @@
+{% extends "base.html" -%}
+{% block content %}
+<title>Your Suggestions</title>
+<div class="container">
+    <h1>Your Suggestions</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Profile Score</th>
+            <th>User Score</th>
+            <th>Total Score</th>
+        </tr>
+        {% for s in suggestions %}
+        <tr>
+            <td>{{ s.name }}</td>
+            {% if s.profile_rating %}
+            <td>{{ s.profile_rating|round(2) }}</td>
+            {% else %}
+            <td>Not available</td>
+            {% endif %}
+            {% if s.user_rating %}
+            <td>{{ s.user_rating|round(2) }}</td>
+            {% else %}
+            <td>Not available</td>
+            {% endif %}
+            <td>{{ s.total_rating|int }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

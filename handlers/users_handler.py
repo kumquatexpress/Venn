@@ -15,6 +15,28 @@ def index():
         users.insert(0, user)
     return render_template('users/index.html', users=users)
 
+def details():
+    id = current_user.data["_id"]
+    filtered = []
+    suggestions = []
+    for user in models.User.find():
+        s = models.Suggestion(user.data["_id"], id)
+        s.find_ratings()
+        if s.valid and s.ua1 != s.ua2:
+            filtered.append(s)
+    filtered = sorted(filtered, key=lambda x: x.total_rating, reverse=True)
+    for s in filtered:
+        name = s.ua1.data["username"]
+        if s.ua1.data["_id"] == current_user.data["_id"]:
+            name = s.ua2.data["username"]
+        suggestions.append({
+            "name": name,
+            "profile_rating": s.profile_rating,
+            "user_rating": s.user_rating,
+            "total_rating": s.total_rating
+        })
+    return render_template('users/details.html', suggestions=suggestions)
+
 def create():
     form = Forms.RegisterForm()
     
@@ -43,17 +65,17 @@ def quiz():
     """get a question from db present it, get a form feedback
     send back as a response to db, win"""
     form = Forms.QuizForm()
-    qid = select_question(current_user)
-    question = models.Question.find_one({"question_id": qid})
+    user = models.User.find_one({"_id": current_user.data["_id"]})
+    question = select_question(user)
     rel = False
     worked = True
 
-    if qid is None or random.randint(0, 10) < PROB:
+    if question is None or random.randint(0, 10) < PROB:
         rel = True
-        users = get_user_pair(current_user)
+        users = get_user_pair(user)
         for i in range(RETRIES):
             if users is None:
-                users = get_user_pair(current_user)
+                users = get_user_pair(user)
             else:
                 break
 
@@ -66,7 +88,6 @@ def quiz():
     if form.validate_on_submit():
         # login and validate the user...
         if form.question_id is None:
-            code.interact(local=locals())
             r = models.Relationship.find_one({"user1": form.userid1, "user2": form.userid2})
             if r is None:
                 r = {
@@ -75,13 +96,12 @@ def quiz():
                     "answers": {}
                 }
             r["answers"][str(current_user.data["_id"])] = form.answer
-            code.interact(local=locals())
             models.Relationship.update(r)
         else:
-            current_user.data["questions"] = current_user.data.get("questions", {})
-            current_user.data["questions"][str(form.question_id)] = form.answer
+            user.data["questions"] = user.data.get("questions", {})
+            user.data["questions"][str(form.question_id)] = form.answer
 
-            models.User.update(current_user.data)
+            models.User.update(user.data)
 
         return redirect("/quiz")
     if worked:
@@ -100,7 +120,7 @@ def select_question(user):
     random.shuffle(idx)
     for q in idx:
         if str(int(questions[q]["question_id"])) not in answered:
-            return q
+            questions[q]
     return None
 
 def get_user_pair(user):
@@ -110,9 +130,12 @@ def get_user_pair(user):
     id1, id2 = random.randint(0, len(users)-1), random.randint(0, len(users)-1)
     if id1 == id2:
         return None
+    if id1 > id2:
+        id1, id2 = id2, id1
+
     r = models.Relationship.find_one({"user1": users[id1].data["_id"], "user2": users[id2].data["_id"]})
     if r is not None:
-        if current_user.data["_id"] in r["answers"]:
+        if str(user.data["_id"]) in r["answers"]:
             return None
     return (users[id1].data, users[id2].data)
 

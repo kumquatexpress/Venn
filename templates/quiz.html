@@ -7,7 +7,7 @@
     </div>
     {% endif %}
     <div class="row" style="text-align:center;">
-        <div class="col-sm-6 bg-success" id="question">
+        <div class="col-sm-8 bg-success" id="question">
             <h2>{{question.title}}</h2>
             <p>{{question.text}}</p>
             {% if relationship %}
@@ -35,7 +35,7 @@
             </div>
             {% endif %}
         </div>
-        <div class="well col-sm-6" id="answer">
+        <div class="well col-sm-4" id="answer">
             <form role="form" method="post" id="quiz-form" autocomplete="off">
                 <div class="form-group">
                     <label for="ans">Your Answer</label>

@@ -10,6 +10,11 @@ app = Blueprint('app', __name__, template_folder='templates')
 def main_page():
     return main_handler.index()
 
+@app.route("/me")
+@login_required
+def me():
+    return users_handler.details()
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     return main_handler.login()

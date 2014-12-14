@@ -17,6 +17,7 @@
             {% if current_user.is_authenticated() %}
                 <h3>Welcome, {{ current_user.data.username }}.</h3>
                 <a href="/quiz" class="btn btn-primary btn-lg">Start Playing</a>
+                <a href="/me" class="btn btn-success btn-lg">View My List</a>
                 <a href="/logout" class="btn btn-warning btn-lg">Not You?</a>
             {% else %}
                 <a href="#about" class="btn btn-default btn-lg">Find Out More</a>
