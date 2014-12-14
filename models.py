@@ -139,9 +139,9 @@ class Suggestion(object):
             return
         urate, prate = self.user_rating, self.profile_rating
         if urate is None:
-        	urate = prate
+        	urate = 0
         if prate is None:
-        	prate = urate
+        	prate = 0
 
         self.total_rating = (urate + prate)/float(2) * float(10)
         self.valid = True
@@ -153,7 +153,7 @@ class Suggestion(object):
             return None
         vals = relationship["answers"].values()
         if len(vals) > 0:
-            self.user_rating = 10 - sum(vals)/float(len(vals))
+            self.user_rating = 10*(10 - sum(vals)/float(len(vals)))
         return None
 
     def find_profile_rating(self, ua1, ua2):
