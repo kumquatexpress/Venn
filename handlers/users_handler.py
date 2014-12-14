@@ -120,7 +120,7 @@ def select_question(user):
     random.shuffle(idx)
     for q in idx:
         if str(int(questions[q]["question_id"])) not in answered:
-            questions[q]
+            return questions[q]
     return None
 
 def get_user_pair(user):
@@ -148,9 +148,9 @@ def make_relationship_question(u1, u2):
     ret_question["userid1"] = u1["_id"]
     ret_question["userid2"] = u2["_id"]
 
-    intersect = [qid for qid in u1["questions"].keys() if qid in u2["questions"].keys()]
-    u1_difference = [qid for qid in u1["questions"].keys() if qid not in u2["questions"].keys()]
-    u2_difference = [qid for qid in u2["questions"].keys() if qid not in u1["questions"].keys()]
+    intersect = [qid for qid in u1.get("questions", {}).keys() if qid in u2.get("questions", {}).keys()]
+    u1_difference = [qid for qid in u1.get("questions", {}).keys() if qid not in u2.get("questions", {}).keys()]
+    u2_difference = [qid for qid in u2.get("questions", {}).keys() if qid not in u1.get("questions", {}).keys()]
     random.shuffle(intersect)
     random.shuffle(u2_difference)
     random.shuffle(u1_difference)
