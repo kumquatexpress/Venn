@@ -1,6 +1,8 @@
 from flask_login import UserMixin
 from collections import defaultdict
 import code
+from scipy import linalg, mat, dot
+import numpy as np
 
 class Model(object):
     dbMap = None
@@ -160,7 +162,13 @@ class Suggestion(object):
         answers2 = ua2.data.get("questions", defaultdict(int))
         keys = [k for k in answers1.keys() if k in answers2]
 
-        diff = [abs(answers1[i]-answers2[i]) for i in keys if answers1[i] > 0 and answers2[i] > 0]
-        if len(diff) > 0:
-            self.profile_rating = 10 - sum(diff)/float(len(diff)) 
-        return None
+        try:
+            answers1, answers2 = zip(*[(answers1[i],answers2[i]) for i in keys if answers1[i] > 0 and answers2[i] > 0])
+            answers1 = list(answers1)
+            answers2 = list(answers2)
+
+            if len(answers1) > 0 and len(answers2) > 0:
+                c = dot(answers1,np.transpose(answers2))/linalg.norm(answers1)/linalg.norm(answers2)
+                self.profile_rating = (c + 1) * 50
+        except:
+            return None
