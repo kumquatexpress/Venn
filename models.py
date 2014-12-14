@@ -92,6 +92,7 @@ class Relationship(Model):
 
 	@staticmethod
 	def find(query={}, limit=0):
+		Relationsip.dbMap = conn.relationships
 		# processing here
 		results = Relationship.dbMap.find(query).limit(limit)
 		if results.count() < 1:
@@ -106,7 +107,7 @@ class Relationship(Model):
 	def insert(obj):
 		# needs validation probably
 		return Relationship.dbMap.insert(obj)
-		
+
 	@staticmethod
 	def update(obj):
 		# needs validation probably
