@@ -1,7 +1,6 @@
 from flask_login import UserMixin
 from collections import defaultdict
 import code
-from scipy import linalg, mat, dot
 import numpy as np
 
 class Model(object):
@@ -168,7 +167,7 @@ class Suggestion(object):
             answers2 = list(answers2)
 
             if len(answers1) > 0 and len(answers2) > 0:
-                c = dot(answers1,np.transpose(answers2))/linalg.norm(answers1)/linalg.norm(answers2)
+                c = np.dot(answers1,np.transpose(answers2))/np.linalg.norm(answers1)/np.linalg.norm(answers2)
                 self.profile_rating = (c + 1) * 50
         except:
             return None

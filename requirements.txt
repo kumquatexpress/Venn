@@ -6,4 +6,3 @@ flask-wtf
 gunicorn
 pyyaml
 numpy
-scipy
