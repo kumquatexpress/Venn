@@ -59,13 +59,17 @@ class RegisterForm(Form):
 class QuizForm(Form):
 
     ans = IntegerRangeField('Answer', [validators.Required()])
-    qid = HiddenField('QuestionId', [validators.Required()])
+    qid = HiddenField('QuestionId')
+    uid1 = HiddenField('UserId1')
+    uid2 = HiddenField('UserId2')
 
     def __init__(self, *args, **kwargs):
         kwargs['csrf_enabled'] = False
         Form.__init__(self, *args, **kwargs)
         self.answer = None
         self.question_id = None
+        self.userid1 = None
+        self.userid2 = None
 
     def validate(self):
         rv = Form.validate(self)
@@ -73,7 +77,13 @@ class QuizForm(Form):
             return False
         
         self.answer = self.ans.data
-        self.question_id = int(float(self.qid.data))
+        if len(self.qid.data) > 0:
+            self.question_id = int(float(self.qid.data))
+        if len(self.uid1.data) > 0:
+            self.userid1 = self.uid1.data
+        if len(self.uid2.data) > 0:
+            self.userid2 = self.uid2.data
+        
         return True
 
 def check_password(p1, p2):

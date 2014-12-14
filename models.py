@@ -13,7 +13,7 @@ class Model(object):
 		return Question.dbMap.find_one(query)
 
 	@staticmethod
-	def find(query={}, limit=-1):
+	def find(query={}, limit=0):
 		# processing here
 		return Question.dbMap.find(query).limit(limit)
 
@@ -39,12 +39,12 @@ class User(Model):
 		User.dbMap = conn.users
 
 	@staticmethod
-	def find(query={}, limit=-1):
+	def find(query={}, limit=0):
 		# processing here
 		results = User.dbMap.find(query).limit(limit)
 		if results.count() < 1:
 			return None
-		return map(lambda x: to_user(x), results)
+		return map(lambda x: to_user(x), [r for r in results])
 
 	@staticmethod
 	def find_one(query={}):
@@ -88,10 +88,10 @@ class Relationship(Model):
 	
 	@staticmethod
 	def initialize_db(conn):
-		Relationsip.dbMap = conn.relationships
+		Relationship.dbMap = conn.relationships
 
 	@staticmethod
-	def find(query={}, limit=-1):
+	def find(query={}, limit=0):
 		# processing here
 		results = Relationship.dbMap.find(query).limit(limit)
 		if results.count() < 1:
@@ -107,7 +107,6 @@ class Relationship(Model):
 		# needs validation probably
 		return Relationship.dbMap.insert(obj)
 		
-
 	@staticmethod
 	def update(obj):
 		# needs validation probably

@@ -10,9 +10,30 @@
         <div class="col-sm-6 bg-success" id="question">
             <h2>{{question.title}}</h2>
             <p>{{question.text}}</p>
+            {% if relationship %}
+                <table class="table">
+                    <tr>
+                        <th>Question</th>
+                        <th>{{question.user1}}</th>
+                        <th>{{question.user2}}</th>
+                    </tr>
+                {% for ans in question.answers %}
+                    <tr>                        
+                        <td><img src={{ans.image}} class="thumbnails" style="max-height:100px;"></td>
+                        <td>{{ans.user1}}</td>
+                        <td>{{ans.user2}}</td>
+                    </tr>
+                {% else %}
+                <div class="row">
+                    <p>It looks like these users have no answered questions.</p>
+                </div>
+                {% endfor %}
+                </table>
+            {% else %}
             <div class="thumbnail">
                 <img src={{question.image}} class="thumbnails" style="max-height:640px;">
             </div>
+            {% endif %}
         </div>
         <div class="well col-sm-6" id="answer">
             <form role="form" method="post" id="quiz-form" autocomplete="off">
@@ -21,6 +42,8 @@
                     <input type="range" name="ans" min="1" max="10" value="5" id="ans" class="form-control" onchange="showValue(value)">
                     <output for="ans" id="showAnswer" style="text-align:center;font-size:16px;font-weight:bold;">5</output>
                     <input type="hidden" name="qid" id="qid" value={{question.question_id}}>
+                    <input type="hidden" name="uid1" id="uid1" value={{question.userid1}}>
+                    <input type="hidden" name="uid2" id="uid2" value={{question.userid2}}>
                 </div>
                 <input type="submit" id="submit" class="btn btn-primary btn-lg btn-block" value="Next Question!">
             </form>
