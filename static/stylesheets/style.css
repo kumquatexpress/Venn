@@ -280,3 +280,7 @@ input[type=range]:focus {
 input[type=range]:focus::-webkit-slider-runnable-track {
     background: #ccc;
 }
+
+.borderless td {
+    border: none;
+}

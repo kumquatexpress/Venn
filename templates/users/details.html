@@ -1,9 +1,9 @@
 {% extends "base.html" -%}
 {% block content %}
 <title>Your Suggestions</title>
-<div class="container">
-    <h1>Your Suggestions</h1>
-    <table class="table table-striped">
+<div class="container bg-success col-sm-8" style="text-align:center;">
+    <h2>Your Suggestions</h2>
+    <table class="table borderless">
         <tr>
             <th>Name</th>
             <th>Profile Score</th>
@@ -28,4 +28,7 @@
         {% endfor %}
     </table>
 </div>
+<div class="container bg-info col-sm-4">
+<a href="/" class="btn btn-primary btn-lg btn-block">Back to Venn</a>
+<a href="/quiz" class="btn btn-success btn-lg btn-block">Improve My Results</a>
 {% endblock %}
