@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Profile Similarity', 'User Judged Opinion'],
+          [ 98.15,  5.7],
+          [ 87.65,  4.3],
+          [ 89.77,  4.0],
+          [ 92.41,  6.7],
+          [ 99.15,  7.2],
+          [ 97.80,  6.7],
+          [ 77.18, 4.5],
+          [ 85.11, 5.5],
+          [ 94.57, 8.0],
+          [ 89.54, 5.6],
+          [ 86.10, 4.4],
+          [ 97.65, 8.5],
+          [ 95.68, 7.8],
+          [ 93.43, 8.2],
+          [ 78.19, 3.3],
+          [99.15, 8.1],
+          [ 95.14, 8.2],
+          [ 82.32, 5.1]
+        ]);
+
+        var options = {
+          title: 'Profile Similarity vs. Crowdsourced Relationship Opinion',
+          hAxis: {title: 'Profile Sim.', minValue: 85, maxValue: 95},
+          vAxis: {title: 'Crowdsourced Opinion', minValue: 3, maxValue: 10},
+          legend: 'none',
+          trendlines: { 0: {} }
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>

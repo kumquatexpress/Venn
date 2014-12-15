@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Type', 'Total', 'User Average'],
+          ['Suggestions',  247,      12],
+          ['Profile Answered', 286,     15],
+          ['Relationship Answered', 53, 4]
+        ]);
+
+        var options = {
+          title: 'Venn Performance',
+          vAxis: {title: 'Feature',  titleTextStyle: {color: 'blue'}}
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
